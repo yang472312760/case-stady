@@ -1,4 +1,4 @@
-package c.y.c.l;
+package c.y.c.thread;
 
 /**
  * <p>@ProjectName:stady-case</p>

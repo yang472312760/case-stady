@@ -1,4 +1,4 @@
-package c.y.c.l;
+package c.y.c.thread;
 
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;

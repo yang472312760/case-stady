@@ -1,9 +1,8 @@
-package c.y.c.l;
+package c.y.c.thread;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
-import java.util.concurrent.RunnableFuture;
 
 /**
  * <p>@ProjectName:stady-case</p>

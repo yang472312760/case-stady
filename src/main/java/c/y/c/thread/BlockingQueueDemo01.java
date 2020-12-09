@@ -1,8 +1,7 @@
-package c.y.c.l;
+package c.y.c.thread;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.SynchronousQueue;
 
 /**
  * BlockingQueue：由数组结构组成的有界阻塞队列

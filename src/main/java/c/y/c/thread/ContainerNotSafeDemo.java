@@ -1,6 +1,5 @@
-package c.y.c.l;
+package c.y.c.thread;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 

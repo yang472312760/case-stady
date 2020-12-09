@@ -1,4 +1,4 @@
-package c.y.c.l;
+package c.y.c.thread;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -7,14 +7,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * public ThreadPoolExecutor(int corePoolSize,
- * int maximumPoolSize,
- * long keepAliveTime,
- * TimeUnit unit,
- * BlockingQueue<Runnable> workQueue,
- * ThreadFactory threadFactory,
- * RejectedExecutionHandler handler) {
- * <p>
+ * public ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue, ThreadFactory threadFactory, RejectedExecutionHandler handler) {}
  * <p>
  * corePoolSize：线程池中的常驻核心线程数
  * <p>
@@ -45,6 +38,29 @@ import java.util.concurrent.TimeUnit;
  * DiscardPolicy：直接丢弃任务，不予任何处理也不抛出异常，如果允许任务丢失，这是最好的一种方案
  * <p>
  * JDK提供的3中创建线程池方式一个都不用，容易出OOM
+ * <p>
+ * 合理配置线程池你是如何考虑的？
+ * <p>
+ * CPU密集型
+ * <p>
+ * CPU密集型的意思是该任务需要大量的运算，而没有阻塞，CPU一直全速运行
+ * CPU密集任务只有在真正的多核CPU上才能得到加速（通过多线程）
+ * <p>
+ * CPU密集型任务配置尽可能少的线程数量：一般公式：CPU核数+1个线程的线程池
+ * <p>
+ * IO密集型
+ * <p>
+ * 一、由于IO密集型任务线程并不是一直在执行任务，则应配置尽可能多的线程，如CPU核数*2
+ * <p>
+ * 二、IO密集型，即该任务需要大量的IO，即大量的阻塞
+ * 在单线程上运行IO密集型的任务会导致浪费大量的CPU运算能力浪费在等待。
+ * 所以在IO密集型任务中使用多线程可以大大的加速程序运行，即使在单核CPU上，这种加速主要就是利用了被浪费掉的阻塞时间
+ * <p>
+ * IO密集型时，大部分线程都阻塞，故需要多配置线程数
+ * <p>
+ * 参考公式：CPU核数/1-阻塞系数         阻塞系数在0.8~0.9之间
+ * <p>
+ * 比如8核CPU：8/1-0.9=80个线程数
  *
  * @author Administrator
  */
