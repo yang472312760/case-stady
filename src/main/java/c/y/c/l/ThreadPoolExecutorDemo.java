@@ -45,6 +45,8 @@ import java.util.concurrent.TimeUnit;
  * DiscardPolicy：直接丢弃任务，不予任何处理也不抛出异常，如果允许任务丢失，这是最好的一种方案
  * <p>
  * JDK提供的3中创建线程池方式一个都不用，容易出OOM
+ *
+ * @author Administrator
  */
 public class ThreadPoolExecutorDemo {
 
@@ -54,7 +56,25 @@ public class ThreadPoolExecutorDemo {
                 5,
                 2L, TimeUnit.SECONDS,
                 new LinkedBlockingDeque<Runnable>(3), Executors.defaultThreadFactory(),
-                new ThreadPoolExecutor.AbortPolicy());
+                //AbortPolicy如果超出maximumPoolSize+workQueue最大值，直接报RejectedExecutionException异常
+                //new ThreadPoolExecutor.AbortPolicy());
+                //new ThreadPoolExecutor.CallerRunsPolicy());
+                //new ThreadPoolExecutor.DiscardOldestPolicy());
+                new ThreadPoolExecutor.DiscardPolicy());
+
+        try {
+
+            for (int i = 0; i < 10; i++) {
+                service.execute(() -> {
+                    System.out.println(Thread.currentThread().getName() + "\t 办理业务");
+                });
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            service.shutdown();
+        }
 
     }
 

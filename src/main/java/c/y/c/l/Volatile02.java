@@ -32,7 +32,6 @@ public class Volatile02 {
         System.out.println(number02.num);
         System.out.println(number02.atomicInteger.get());
     }
-
 }
 
 class Number02 {

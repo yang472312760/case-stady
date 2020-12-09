@@ -36,6 +36,7 @@ public class ThreadPoolDemo {
         //ExecutorService service = Executors.newSingleThreadExecutor();
         ExecutorService service = Executors.newCachedThreadPool();
 
+
         try {
             for (int i = 1; i <= 10; i++) {
                 service.execute(() -> {

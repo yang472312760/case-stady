@@ -15,6 +15,7 @@ public class Volatile01 {
                     number01.atomicInteger();
                 }
             }).start();
+
         }
 
         while (Thread.activeCount() > 2){
