@@ -1,5 +1,11 @@
 package c.y.c.l;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 /**
  * public ThreadPoolExecutor(int corePoolSize,
  * int maximumPoolSize,
@@ -37,14 +43,18 @@ package c.y.c.l;
  * CallerRunsPolicy；“调用者运行”一种调节机制，该策略既不会抛弃任务，也不会抛出异常，而是将某些任务回退给调用者，从而降低新任务的流量。
  * DiscardOldestPolicy：抛弃队列中等待最久的任务，然后把当前任务加入队列中尝试再次提交当前任务
  * DiscardPolicy：直接丢弃任务，不予任何处理也不抛出异常，如果允许任务丢失，这是最好的一种方案
- *
+ * <p>
  * JDK提供的3中创建线程池方式一个都不用，容易出OOM
- *
- * 
  */
 public class ThreadPoolExecutorDemo {
 
     public static void main(String[] args) {
+
+        ExecutorService service = new ThreadPoolExecutor(2,
+                5,
+                2L, TimeUnit.SECONDS,
+                new LinkedBlockingDeque<Runnable>(3), Executors.defaultThreadFactory(),
+                new ThreadPoolExecutor.AbortPolicy());
 
     }
 
