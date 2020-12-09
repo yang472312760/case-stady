@@ -25,6 +25,8 @@ public class SpinLockDemo {
         while (!atomicReference.compareAndSet(null, t)) {
         }
 
+
+
     }
 
     public void unlock() {
